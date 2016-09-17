@@ -18,9 +18,9 @@ int main(){
     int tmp;
     for(int i = (int)nums.size() - 1; i > 0 ; --i){
         for(int j = 0; j < i; ++j){
-            if(nums.at(j) > nums.at(j+1)){
-                tmp = nums.at(j+1);
-                nums[j+1] =  nums.at(j);
+            if(nums[j]> nums[j+1]){
+                tmp = nums[j+1];
+                nums[j+1] =  nums[j];
                 nums[j] =  tmp;         
             }
         }
