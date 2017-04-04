@@ -1,19 +1,11 @@
 #include <iostream>
 #include <random>
 #include <vector> 
+#include "randgen.cpp"
 using namespace std;
 
 int main(){
-    vector<int> nums;
-    
-    //Random number
-    random_device seed_gen;
-    mt19937 mtrd(seed_gen());
-
-    for(int i = 0; i < 10; i++){
-        nums.push_back(mtrd());
-    }
-   
+    vector<int> nums = rand_int_list();
 
     int tmp;
     for(int i = (int)nums.size() - 1; i > 0 ; --i){
