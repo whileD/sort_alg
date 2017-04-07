@@ -1,50 +1,25 @@
-#include <iostream>
-#include <vector>
-#include <random>
+#include<iostream>
+#include<vector>
+#include"randgen.cpp"
+
 using namespace std;
 
-vector<int> bucket(vector<int> nums, int max){
-	vector<int> bucket(max+1);
-	//bucket
-	for(int i = 0; i < nums.size(); ++i){
-		++bucket[nums[i]];
-	}
-
-	//for in
-	nums.clear();
-	for(int i = 0; i < max; ++i){
-		if(bucket[i] != 0){
-			for(int j = 0; j < bucket[i]; ++j){
-				nums.push_back(i);
-			}
-		}
-	}
-
-	return nums;
-}
-
-void sout(vector<int> num){
-	for(int i = 0; i < (int)num.size(); ++i){
-		cout << num[i] << "\t";
-	}
-	cout << endl;
+void bucket(vector<int>& v){
+	vector<int> bucket(MAX_NUMBER+1, 0);
+	for(int i=0; i<v.size(); i++) bucket[v[i]]++;
+	v.clear();
+	for(int i=0; i<bucket.size(); i++)
+		if (bucket[i] != 0)
+			for(int j=bucket[i]; j>-1; j--) v.push_back(i);
 }
 
 int main(){
-	vector<int> nums;
-	int max = 25;
-
-	random_device rd;
-	mt19937 rand(rd());
-	uniform_int_distribution<> num(1,max);
-	for(int i = 0; i < 25; ++i){
-		nums.push_back(num(rand));
-	}
+	vector<int> nums = rand_int_list();
 	
-	sout(nums);
-	nums = bucket(nums, max);
-	sout(nums);
+	bucket(nums);
 
-	return 0;
+	for(int i=0; i<nums.size(); i++){
+		cout << nums[i] << endl;
+	}
 }
 
